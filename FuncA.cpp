@@ -2,8 +2,16 @@
 #include <cmath>
 
 double FuncA::calculate(double x, int n) {
-// Calculate first 3 terms of cosine Taylor series
-    double x2 = x * x;
-    double x4 = x2 * x2;
-    return 1.0 - x2/2.0 + x4/24.0;
+// Calculate cosine using Taylor series
+    // cos(x) = 1 - (x²/2!) + (x⁴/4!) - ... + ((-1)ⁿ * x²ⁿ)/(2n)!
+    double result = 1.0;
+    double term = 1.0;
+    
+    for (int i = 1; i <= n; i++) {
+        // Calculate (-1)^i * x^(2i) / (2i)!
+        term *= -1.0 * x * x / (2 * i * (2 * i - 1));
+        result += term;
+    }
+    
+    return result;
 }
