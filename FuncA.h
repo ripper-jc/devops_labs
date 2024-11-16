@@ -3,8 +3,7 @@
 
 class FuncA {
 public:
-    // Function that returns 0 (placeholder for now)
-    double calculate();
+    double calculate(double x, int n);
 };
 
 #endif
