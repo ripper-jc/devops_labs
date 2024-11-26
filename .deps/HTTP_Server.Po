@@ -108,7 +108,7 @@ HTTP_Server.o: HTTP_Server.cpp /usr/include/stdc-predef.h \
  /usr/include/errno.h /usr/include/x86_64-linux-gnu/bits/errno.h \
  /usr/include/linux/errno.h /usr/include/x86_64-linux-gnu/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/error_t.h FuncA.h \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/c++/11/bits/functexcept.h \
  /usr/include/c++/11/bits/exception_defines.h \
@@ -355,6 +355,7 @@ HTTP_Server.o: HTTP_Server.cpp /usr/include/stdc-predef.h \
 /usr/include/asm-generic/errno.h:
 /usr/include/asm-generic/errno-base.h:
 /usr/include/x86_64-linux-gnu/bits/types/error_t.h:
+FuncA.h:
 /usr/include/c++/11/vector:
 /usr/include/c++/11/bits/stl_algobase.h:
 /usr/include/c++/11/bits/functexcept.h:

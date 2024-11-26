@@ -11,6 +11,7 @@
 #include <sys/stat.h>
 #include <errno.h>
 
+#include "FuncA.h"
 #include <vector>
 #include <random>
 #include <chrono>
@@ -132,43 +133,46 @@ int CreateHTTPserver()
 
                     sendGETresponse(clientSocket, strFilePath, strResponse);
                 }
-                else if(!strcmp(strHTTP_requestPath, "/compute"))
-		{
-			
-			auto t1 = std::chrono::high_resolution_clock::now();	
+                else if (!strcmp(strHTTP_requestPath, "/compute"))
+    {
+        auto t1 = std::chrono::high_resolution_clock::now();
 
-			std::vector<int> aValues;
-			// Mersenne Twister random engine
-			std::mt19937 mtre {123};
-			std::uniform_int_distribution<int> distr {0, 2000000};
+        std::vector<double> aValues;
+        FuncA calc;
+        std::random_device rd;
+        std::mt19937 mtre(rd());
+        std::uniform_real_distribution<double> distr(0.0, 2 * M_PI);
 
-			for (int i=0; i<2000000; i++) {
-				aValues.push_back(distr(mtre));
-			}
+        // Generate 2,000,000 random values and calculate their trigonometric function
+        for (int i = 0; i < 2000000; i++) {
+            double randomValue = distr(mtre);
+            double calculatedValue = calc.calculate(randomValue, 10); // Using 10 terms for Taylor series
+            aValues.push_back(calculatedValue);
+        }
 
-			for (int i=0; i<500; i++)
+        for (int i=0; i<500; i++)
 			{
 				sort(begin(aValues), end(aValues));
-				reverse(begin(aValues), end(aValues));
+				//reverse(begin(aValues), end(aValues));
 			}
+        // Sort the array in ascending order
 
-			
-			auto t2 = std::chrono::high_resolution_clock::now();
-			auto int_ms = std::chrono::duration_cast<std::chrono::milliseconds>(t2-t1);
+        auto t2 = std::chrono::high_resolution_clock::now();
+        auto int_ms = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
 
-			int iMS = int_ms.count();
+        int iMS = int_ms.count();
 
-			char strTimeEllapsed[20];
-			sprintf(strTimeEllapsed, "%i", iMS);
+        char strTimeEllapsed[20];
+        sprintf(strTimeEllapsed, "%i", iMS);
 
-			sprintf(strResponse, "%sContent-type: text/html\r\nContent-Length: %ld\r\n\r\n", HTTP_200HEADER, strlen(strTimeEllapsed));
-			
-			write(clientSocket, strResponse, strlen(strResponse));
-			printf("\nResponse: \n%s\n", strResponse);
+        sprintf(strResponse, "%sContent-type: text/html\r\nContent-Length: %ld\r\n\r\n", HTTP_200HEADER, strlen(strTimeEllapsed));
 
-			write(clientSocket, strTimeEllapsed, strlen(strTimeEllapsed));
-			printf("%s\n", strTimeEllapsed);
-		}
+        write(clientSocket, strResponse, strlen(strResponse));
+        printf("\nResponse: \n%s\n", strResponse);
+
+        write(clientSocket, strTimeEllapsed, strlen(strTimeEllapsed));
+        printf("%s\n", strTimeEllapsed);
+    }
 		else if ((!strcmp(strHTTPreqExt, "JPG")) || (!strcmp(strHTTPreqExt, "jpg")))
                 {
                     //send image to client
