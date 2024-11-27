@@ -104,10 +104,11 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_FuncA_OBJECTS = main.$(OBJEXT) FuncA.$(OBJEXT) \
-	HTTP_Server.$(OBJEXT)
+	HTTP_Server.$(OBJEXT) calculateTime.$(OBJEXT)
 FuncA_OBJECTS = $(am_FuncA_OBJECTS)
 FuncA_LDADD = $(LDADD)
-am_test_func_a_OBJECTS = unitTest.$(OBJEXT) FuncA.$(OBJEXT)
+am_test_func_a_OBJECTS = unitTest.$(OBJEXT) FuncA.$(OBJEXT) \
+	calculateTime.$(OBJEXT)
 test_func_a_OBJECTS = $(am_test_func_a_OBJECTS)
 test_func_a_LDADD = $(LDADD)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -126,7 +127,8 @@ DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/FuncA.Po ./$(DEPDIR)/HTTP_Server.Po \
-	./$(DEPDIR)/main.Po ./$(DEPDIR)/unitTest.Po
+	./$(DEPDIR)/calculateTime.Po ./$(DEPDIR)/main.Po \
+	./$(DEPDIR)/unitTest.Po
 am__mv = mv -f
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -492,8 +494,8 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign
-test_func_a_SOURCES = unitTest.cpp FuncA.cpp FuncA.h
-FuncA_SOURCES = main.cpp FuncA.cpp FuncA.h HTTP_Server.cpp
+test_func_a_SOURCES = unitTest.cpp FuncA.cpp FuncA.h calculateTime.cpp calculateTime.h
+FuncA_SOURCES = main.cpp FuncA.cpp FuncA.h HTTP_Server.cpp calculateTime.cpp calculateTime.h
 EXTRA_DIST = Makefile.am
 all: all-am
 
@@ -594,6 +596,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FuncA.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/HTTP_Server.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/calculateTime.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/unitTest.Po@am__quote@ # am--include-marker
 
@@ -1061,6 +1064,7 @@ distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 		-rm -f ./$(DEPDIR)/FuncA.Po
 	-rm -f ./$(DEPDIR)/HTTP_Server.Po
+	-rm -f ./$(DEPDIR)/calculateTime.Po
 	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f ./$(DEPDIR)/unitTest.Po
 	-rm -f Makefile
@@ -1112,6 +1116,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -rf $(top_srcdir)/autom4te.cache
 		-rm -f ./$(DEPDIR)/FuncA.Po
 	-rm -f ./$(DEPDIR)/HTTP_Server.Po
+	-rm -f ./$(DEPDIR)/calculateTime.Po
 	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f ./$(DEPDIR)/unitTest.Po
 	-rm -f Makefile
