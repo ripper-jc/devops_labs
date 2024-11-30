@@ -1,6 +1,11 @@
-FROM alpine
+FROM alpine AS build
+RUN apk add --no-cache automake autoconf build-base
 WORKDIR /home/optima
-COPY ./FuncA .
-RUN apk add libstdc++
-RUN apk add libc6-compat
-ENTRYPOINT ["./FuncA"]
+COPY . .
+RUN ./configure
+RUN make
+
+
+FROM alpine
+COPY --from=build /home/optima/FuncA /usr/local/bin/FuncA
+ENTRYPOINT ["/usr/local/bin/FuncA"]

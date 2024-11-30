@@ -2,9 +2,9 @@ name: C++ CI with Make
 
 on:
   push:
-    branches: [branchHTTPserver]
+    branches: [branchHTTPservMulti]
   pull_request:
-    branches: [branchHTTPserver]
+    branches: [branchHTTPservMulti]
 
 jobs:
   build:
@@ -52,7 +52,7 @@ jobs:
 
       - name: Build Dockerfile image for amd64
         run: docker build --platform=linux/amd64 -t rpjc/optimaserver:amd64 --push .
-      
+
       - name: Build Dockerfile image for arm64
         run: docker build --platform=linux/arm64 -t rpjc/optimaserver:arm64 --push .
 

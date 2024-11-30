@@ -6,4 +6,5 @@ test_func_a_SOURCES = unitTest.cpp FuncA.cpp FuncA.h calculateTime.cpp calculate
 
 TESTS = test_func_a
 FuncA_SOURCES = main.cpp FuncA.cpp FuncA.h HTTP_Server.cpp calculateTime.cpp calculateTime.h
+FuncA_LDFLAGS -static
 EXTRA_DIST = Makefile.am
