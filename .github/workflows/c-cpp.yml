@@ -48,11 +48,11 @@ jobs:
         run: docker buildx ls
 
       - name: Log in to dockerhub
-        run: docker login -u ${{ vars.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
+        run: docker login -u ${{ vars.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Dockerfile image for amd64
         run: docker build --platform=linux/amd64 -t rpjc/optimaserver:amd64 --push .
-      
+
       - name: Build Dockerfile image for arm64
         run: docker build --platform=linux/arm64 -t rpjc/optimaserver:arm64 --push .
 
