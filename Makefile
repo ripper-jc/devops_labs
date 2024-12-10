@@ -107,6 +107,8 @@ am_FuncA_OBJECTS = main.$(OBJEXT) FuncA.$(OBJEXT) \
 	HTTP_Server.$(OBJEXT) calculateTime.$(OBJEXT)
 FuncA_OBJECTS = $(am_FuncA_OBJECTS)
 FuncA_LDADD = $(LDADD)
+FuncA_LINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(FuncA_LDFLAGS) \
+	$(LDFLAGS) -o $@
 am_test_func_a_OBJECTS = unitTest.$(OBJEXT) FuncA.$(OBJEXT) \
 	calculateTime.$(OBJEXT)
 test_func_a_OBJECTS = $(am_test_func_a_OBJECTS)
@@ -411,7 +413,7 @@ AM_DEFAULT_VERBOSITY = 1
 AUTOCONF = ${SHELL} '/home/rpjc/Documents/devops_labs/missing' autoconf
 AUTOHEADER = ${SHELL} '/home/rpjc/Documents/devops_labs/missing' autoheader
 AUTOMAKE = ${SHELL} '/home/rpjc/Documents/devops_labs/missing' automake-1.16
-AWK = gawk
+AWK = mawk
 CPPFLAGS = 
 CSCOPE = cscope
 CTAGS = ctags
@@ -496,6 +498,7 @@ top_srcdir = .
 AUTOMAKE_OPTIONS = foreign
 test_func_a_SOURCES = unitTest.cpp FuncA.cpp FuncA.h calculateTime.cpp calculateTime.h
 FuncA_SOURCES = main.cpp FuncA.cpp FuncA.h HTTP_Server.cpp calculateTime.cpp calculateTime.h
+FuncA_LDFLAGS = -static
 EXTRA_DIST = Makefile.am
 all: all-am
 
@@ -582,7 +585,7 @@ clean-checkPROGRAMS:
 
 FuncA$(EXEEXT): $(FuncA_OBJECTS) $(FuncA_DEPENDENCIES) $(EXTRA_FuncA_DEPENDENCIES) 
 	@rm -f FuncA$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(FuncA_OBJECTS) $(FuncA_LDADD) $(LIBS)
+	$(AM_V_CXXLD)$(FuncA_LINK) $(FuncA_OBJECTS) $(FuncA_LDADD) $(LIBS)
 
 test_func_a$(EXEEXT): $(test_func_a_OBJECTS) $(test_func_a_DEPENDENCIES) $(EXTRA_test_func_a_DEPENDENCIES) 
 	@rm -f test_func_a$(EXEEXT)

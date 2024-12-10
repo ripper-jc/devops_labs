@@ -14,7 +14,7 @@ hostname = pop-os
 uname -m = x86_64
 uname -r = 6.9.3-76060903-generic
 uname -s = Linux
-uname -v = #202405300957~1726766035~22.04~4092a0e SMP PREEMPT_DYNAMIC Thu S
+uname -v = #202405300957~1732141768~22.04~f2697e1 SMP PREEMPT_DYNAMIC Wed N
 
 /usr/bin/uname -p = x86_64
 /bin/uname -X     = unknown
@@ -28,9 +28,6 @@ uname -v = #202405300957~1726766035~22.04~4092a0e SMP PREEMPT_DYNAMIC Thu S
 /bin/universe          = unknown
 
 PATH: /home/rpjc/.console-ninja/.bin/
-PATH: /home/rpjc/.console-ninja/.bin/
-PATH: /home/rpjc/.nvm/versions/node/v20.15.1/bin/
-PATH: /home/rpjc/.local/bin/
 PATH: /usr/local/sbin/
 PATH: /usr/local/bin/
 PATH: /usr/sbin/
@@ -41,6 +38,7 @@ PATH: /usr/games/
 PATH: /usr/local/games/
 PATH: /snap/bin/
 PATH: /snap/bin/
+PATH: /home/rpjc/.local/share/JetBrains/Toolbox/scripts/
 
 
 ## ----------- ##
@@ -58,8 +56,10 @@ configure:2316: result: yes
 configure:2475: checking for a race-free mkdir -p
 configure:2519: result: /usr/bin/mkdir -p
 configure:2526: checking for gawk
-configure:2547: found /usr/bin/gawk
-configure:2558: result: gawk
+configure:2561: result: no
+configure:2526: checking for mawk
+configure:2547: found /usr/bin/mawk
+configure:2558: result: mawk
 configure:2569: checking whether make sets $(MAKE)
 configure:2592: result: yes
 configure:2622: checking whether make supports nested variables
@@ -197,7 +197,7 @@ ac_cv_env_target_alias_value=
 ac_cv_objext=o
 ac_cv_path_install='/usr/bin/install -c'
 ac_cv_path_mkdir=/usr/bin/mkdir
-ac_cv_prog_AWK=gawk
+ac_cv_prog_AWK=mawk
 ac_cv_prog_ac_ct_CXX=g++
 ac_cv_prog_cxx_11=no
 ac_cv_prog_cxx_cxx11=
@@ -223,7 +223,7 @@ AM_V='$(V)'
 AUTOCONF='${SHELL} '\''/home/rpjc/Documents/devops_labs/missing'\'' autoconf'
 AUTOHEADER='${SHELL} '\''/home/rpjc/Documents/devops_labs/missing'\'' autoheader'
 AUTOMAKE='${SHELL} '\''/home/rpjc/Documents/devops_labs/missing'\'' automake-1.16'
-AWK='gawk'
+AWK='mawk'
 CPPFLAGS=''
 CSCOPE='cscope'
 CTAGS='ctags'
