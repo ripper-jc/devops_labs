@@ -1,7 +1,8 @@
 FROM alpine AS build
-RUN apk add --no-cache automake autoconf build-base
+RUN apk add --no-cache build-base automake autoconf
 WORKDIR /home/optima
 COPY . .
+RUN autoreconf --install
 RUN ./configure
 RUN make
 
