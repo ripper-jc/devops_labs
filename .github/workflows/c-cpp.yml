@@ -22,22 +22,6 @@ jobs:
         run: |
           autoreconf --install
 
-      - name: Configure
-        run: ./configure
-
-      - name: Build
-        run: make
-
-      - name: Run tests
-        run: make check
-
-      - name: Upload test log
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-logs
-          path: test-suite.log
-
       - name: QEMU install
         uses: docker/setup-qemu-action@v3
 
