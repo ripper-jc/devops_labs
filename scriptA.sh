@@ -28,13 +28,15 @@ update_containers() {
   echo "Pulling the latest image..."
   docker pull rpjc/optimaserver
 
+  declare -A container_cores=( ["srv1"]=0 ["srv2"]=1 ["srv3"]=2 )
+
   for container_name in srv1 srv2 srv3; do
     if docker ps --format '{{.Names}}' | grep -q "$container_name"; then
       echo "Stopping $container_name for update..."
       docker stop "$container_name"
       docker rm "$container_name"
       echo "Restarting $container_name..."
-      launch_container "$container_name" "${container_name: -1}"
+      launch_container "$container_name" "${container_cores[$container_name]}"
     fi
   done
 }
@@ -88,16 +90,17 @@ while true; do
 
   # Check for new version of the container every 10 minutes
   current_time=$(date +%s)
-  if (( current_time - last_update_check >= 40 )); then
+  if (( current_time - last_update_check >= 600 )); then
     echo "Checking for new version of the container..."
     if docker pull rpjc/optimaserver | grep -q 'Downloaded newer image'; then
       echo "New image version available. Updating containers..."
+      declare -A container_cores=( ["srv1"]=0 ["srv2"]=1 ["srv3"]=2 )
       for container_name in srv1 srv2 srv3; do
         if docker ps --format '{{.Names}}' | grep -q "$container_name"; then
           echo "Updating $container_name..."
           docker stop "$container_name"
           docker rm "$container_name"
-          launch_container "$container_name" "${container_name: -1}"
+          launch_container "$container_name" "${container_cores[$container_name]}"
           sleep 10  # Ensure at least one container is running before updating the next
         fi
       done
