@@ -49,7 +49,7 @@ while true; do
   echo "Checking srv1..."
   if docker ps --format '{{.Names}}' | grep -q srv1; then
     usage1=$(get_cpu_usage srv1)
-    sleep 60
+    sleep 20
     usage2=$(get_cpu_usage srv1)
     if (( $(echo "$usage1 > 80" | bc -l) && $(echo "$usage2 > 80" | bc -l) )); then
       echo "srv1 is busy for 2 consecutive minutes. Checking for srv2..."
@@ -62,7 +62,7 @@ while true; do
   # Check srv2
   if docker ps --format '{{.Names}}' | grep -q srv2; then
     usage1=$(get_cpu_usage srv2)
-    sleep 60
+    sleep 20
     usage2=$(get_cpu_usage srv2)
     if (( $(echo "$usage1 > 80" | bc -l) && $(echo "$usage2 > 80" | bc -l) )); then
       echo "srv2 is busy for 2 consecutive minutes. Checking for srv3..."
@@ -79,7 +79,7 @@ while true; do
   # Check srv3
   if docker ps --format '{{.Names}}' | grep -q srv3; then
     usage1=$(get_cpu_usage srv3)
-    sleep 60
+    sleep 20
     usage2=$(get_cpu_usage srv3)
     if (( $(echo "$usage1 < 10" | bc -l) && $(echo "$usage2 < 10" | bc -l) )); then
       echo "srv3 is idle for 2 consecutive minutes. Stopping it..."
