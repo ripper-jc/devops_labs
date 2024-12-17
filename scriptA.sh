@@ -90,7 +90,7 @@ while true; do
 
   # Check for new version of the container every 10 minutes
   current_time=$(date +%s)
-  if (( current_time - last_update_check >= 600 )); then
+  if (( current_time - last_update_check >= 40 )); then
     echo "Checking for new version of the container..."
     if docker pull rpjc/optimaserver | grep -q 'Downloaded newer image'; then
       echo "New image version available. Updating containers..."
